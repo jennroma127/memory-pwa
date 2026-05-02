@@ -1,0 +1,12 @@
+{
+  "project_name": "MEmory",
+  "linear_team": "JRoVisions",
+  "repo": "jennroma127/memory-pwa",
+  "local_path": "/Users/jmromano/Documents/Claude/Projects/MEmory",
+  "main_files": ["index.html"],
+  "build_command": "echo 'Static PWA — no build step'",
+  "branch_prefix": "deuce",
+  "user_pushes": true,
+  "stack_notes": "Single-file React PWA via CDN. Mobile-first. No bundler.",
+  "project_notes": "Self-hosted Plaud replacement UI. Clean, dark-ish, iPhone-native feel. Thumb-friendly. Deuce owns template selector, chat UI, and copy/download components."
+}

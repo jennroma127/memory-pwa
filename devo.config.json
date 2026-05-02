@@ -1,0 +1,12 @@
+{
+  "project_name": "MEmory",
+  "linear_team": "JRoVisions",
+  "repo": "jennroma127/memory-pwa",
+  "local_path": "/Users/jmromano/Documents/Claude/Projects/MEmory",
+  "main_files": ["index.html"],
+  "build_command": "echo 'Static PWA — no build step'",
+  "branch_prefix": "devo",
+  "user_pushes": true,
+  "stack_notes": "Single-file React PWA loaded via CDN. No bundler. manifest.json + sw.js for PWA install. API keys in localStorage.",
+  "project_notes": "Self-hosted Plaud replacement. Whisper for transcription, Claude for summarization/chat. Must install from Safari on iPhone. No backend — all client-side."
+}
