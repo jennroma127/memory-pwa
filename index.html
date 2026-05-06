@@ -6,9 +6,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="MEmory">
-  <meta name="theme-color" content="#1a1a1a">
+  <meta name="theme-color" content="#4A6CF7">
   <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a1a' width='192' height='192' rx='32'/><text x='50%' y='54%' font-size='108' fill='%234a9eff' text-anchor='middle' dominant-baseline='central' font-family='system-ui' font-weight='700'>M</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><defs><linearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%234A6CF7'/><stop offset='100%25' style='stop-color:%239B3FF5'/></linearGradient></defs><rect width='1024' height='1024' rx='224' fill='url(%23bg)'/><rect x='312' y='290' width='48' height='444' rx='24' fill='white'/><rect x='376' y='308' width='48' height='408' rx='24' fill='white'/><rect x='252' y='352' width='44' height='320' rx='22' fill='white'/><rect x='440' y='380' width='44' height='264' rx='22' fill='white'/><rect x='198' y='432' width='38' height='160' rx='19' fill='white'/><rect x='500' y='436' width='38' height='152' rx='19' fill='white'/><rect x='148' y='490' width='28' height='44' rx='14' fill='white'/><rect x='620' y='344' width='268' height='34' rx='17' fill='white'/><rect x='620' y='406' width='240' height='34' rx='17' fill='white'/><rect x='620' y='468' width='220' height='34' rx='17' fill='white'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><defs><linearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%234A6CF7'/><stop offset='100%25' style='stop-color:%239B3FF5'/></linearGradient></defs><rect width='1024' height='1024' rx='224' fill='url(%23bg)'/><rect x='312' y='290' width='48' height='444' rx='24' fill='white'/><rect x='376' y='308' width='48' height='408' rx='24' fill='white'/><rect x='252' y='352' width='44' height='320' rx='22' fill='white'/><rect x='440' y='380' width='44' height='264' rx='22' fill='white'/><rect x='198' y='432' width='38' height='160' rx='19' fill='white'/><rect x='500' y='436' width='38' height='152' rx='19' fill='white'/><rect x='148' y='490' width='28' height='44' rx='14' fill='white'/><rect x='620' y='344' width='268' height='34' rx='17' fill='white'/><rect x='620' y='406' width='240' height='34' rx='17' fill='white'/><rect x='620' y='468' width='220' height='34' rx='17' fill='white'/></svg>">
   <title>MEmory</title>
 
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -16,7 +17,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <style>
-    /* ===== Design System (Deuce) ===== */
+    /* ===== Design System ===== */
     :root {
       --color-bg: #1a1a1a;
       --color-surface: #2d2d2d;
@@ -27,199 +28,86 @@
       --color-accent-hover: #357abd;
       --color-success: #4caf50;
       --color-error: #f44336;
-
-      --spacing-xs: 4px;
-      --spacing-sm: 8px;
-      --spacing-md: 16px;
-      --spacing-lg: 24px;
-      --spacing-xl: 32px;
-
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-
+      --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 16px;
+      --spacing-lg: 24px; --spacing-xl: 32px;
+      --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
       --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      --font-size-sm: 13px;
-      --font-size-base: 16px;
-      --font-size-lg: 18px;
+      --font-size-sm: 13px; --font-size-base: 16px; --font-size-lg: 18px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body, #root {
-      width: 100%;
-      height: 100%;
-    }
-
+    html, body, #root { width: 100%; height: 100%; }
     body {
-      background-color: var(--color-bg);
-      color: var(--color-text-primary);
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow: hidden;
+      background-color: var(--color-bg); color: var(--color-text-primary);
+      font-family: var(--font-sans); font-size: var(--font-size-base);
+      line-height: 1.5; -webkit-font-smoothing: antialiased; overflow: hidden;
     }
-
-    /* ===== App Shell (Devo — JRO-209) ===== */
     .app-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      display: flex; flex-direction: column; height: 100vh;
       padding-top: max(0px, env(safe-area-inset-top));
       padding-bottom: max(0px, env(safe-area-inset-bottom));
       padding-left: max(0px, env(safe-area-inset-left));
       padding-right: max(0px, env(safe-area-inset-right));
     }
-
     .app-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-md);
-      border-bottom: 1px solid var(--color-border);
-      background-color: var(--color-surface);
-      flex-shrink: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: var(--spacing-md); border-bottom: 1px solid var(--color-border);
+      background-color: var(--color-surface); flex-shrink: 0;
     }
-
-    .app-title {
-      font-size: var(--font-size-lg);
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-
-    .app-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: var(--spacing-md);
-    }
-
-    /* ===== Settings Button (Devo — JRO-209) ===== */
+    .app-title { font-size: var(--font-size-lg); font-weight: 700; letter-spacing: -0.3px; }
+    .app-content { flex: 1; overflow-y: auto; padding: var(--spacing-md); }
     .settings-button {
-      background: none;
-      border: none;
-      color: var(--color-text-secondary);
-      font-size: 20px;
-      cursor: pointer;
-      padding: var(--spacing-sm);
-      border-radius: var(--radius-md);
-      min-width: 44px;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.2s;
+      background: none; border: none; color: var(--color-text-secondary);
+      font-size: 20px; cursor: pointer; padding: var(--spacing-sm);
+      border-radius: var(--radius-md); min-width: 44px; min-height: 44px;
+      display: flex; align-items: center; justify-content: center; transition: background-color 0.2s;
     }
     .settings-button:active { background-color: var(--color-border); }
-
-    /* ===== Settings Modal (Devo — JRO-209) ===== */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: flex-end;
-      z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.7); display: flex; align-items: flex-end; z-index: 1000;
     }
     .modal-overlay.hidden { display: none; }
-
     .modal-content {
-      background: var(--color-surface);
-      width: 100%;
+      background: var(--color-surface); width: 100%;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      padding: var(--spacing-lg);
-      max-height: 85vh;
-      overflow-y: auto;
+      padding: var(--spacing-lg); max-height: 85vh; overflow-y: auto;
       padding-bottom: max(var(--spacing-lg), env(safe-area-inset-bottom));
     }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-lg);
-    }
-
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); }
     .modal-title { font-size: var(--font-size-lg); font-weight: 700; }
-
     .modal-close {
-      background: none;
-      border: none;
-      color: var(--color-text-secondary);
-      font-size: 22px;
-      cursor: pointer;
-      min-width: 44px;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: none; border: none; color: var(--color-text-secondary);
+      font-size: 22px; cursor: pointer; min-width: 44px; min-height: 44px;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .settings-group { margin-bottom: var(--spacing-lg); }
-
     .settings-label {
-      display: block;
-      font-size: var(--font-size-sm);
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--spacing-sm);
-      letter-spacing: 0.5px;
+      display: block; font-size: var(--font-size-sm); font-weight: 600;
+      text-transform: uppercase; color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-sm); letter-spacing: 0.5px;
     }
-
     .settings-input {
-      width: 100%;
-      padding: 12px;
-      background: var(--color-bg);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      color: var(--color-text-primary);
-      font-size: var(--font-size-base);
+      width: 100%; padding: 12px; background: var(--color-bg);
+      border: 1px solid var(--color-border); border-radius: var(--radius-md);
+      color: var(--color-text-primary); font-size: var(--font-size-base);
       font-family: 'Monaco', 'Courier New', monospace;
     }
     .settings-input:focus { outline: none; border-color: var(--color-accent); }
     .settings-input::placeholder { color: #555; }
-
-    .settings-description {
-      font-size: 12px;
-      color: #666;
-      margin-top: 6px;
-    }
+    .settings-description { font-size: 12px; color: #666; margin-top: 6px; }
     .settings-description a { color: var(--color-text-secondary); }
-
-    .settings-actions {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-lg);
-    }
-
+    .settings-actions { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-lg); }
     .status-message {
-      font-size: var(--font-size-sm);
-      text-align: center;
-      margin-top: var(--spacing-sm);
-      padding: var(--spacing-sm);
-      border-radius: var(--radius-sm);
+      font-size: var(--font-size-sm); text-align: center;
+      margin-top: var(--spacing-sm); padding: var(--spacing-sm); border-radius: var(--radius-sm);
     }
     .status-success { background: #1a3a1a; color: #6ce96c; }
-
-    /* ===== Buttons (Deuce — JRO-213) ===== */
     .button {
-      padding: 10px 16px;
-      min-height: 44px;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-      -webkit-user-select: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-sm);
-      white-space: nowrap;
+      padding: 10px 16px; min-height: 44px; border: none; border-radius: var(--radius-sm);
+      font-family: var(--font-sans); font-size: var(--font-size-base); font-weight: 500;
+      cursor: pointer; transition: all 0.2s ease; user-select: none; -webkit-user-select: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: var(--spacing-sm); white-space: nowrap;
     }
     .button:active { transform: scale(0.97); }
     .button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
@@ -228,259 +116,184 @@
     .button-secondary { background-color: var(--color-border); color: var(--color-text-primary); }
     .button-secondary:hover:not(:disabled) { opacity: 0.8; }
     .button-sm { padding: 8px 12px; font-size: var(--font-size-sm); min-height: 44px; }
-
-    /* ===== Upload Area (Devo — JRO-210) ===== */
     .upload-area {
-      border: 2px dashed var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-xl);
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background-color 0.2s;
-      margin-bottom: var(--spacing-md);
+      border: 2px dashed var(--color-border); border-radius: var(--radius-lg);
+      padding: var(--spacing-xl); text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s; margin-bottom: var(--spacing-md);
     }
     .upload-area:active { border-color: var(--color-accent); background-color: rgba(74,158,255,0.05); }
-
     .upload-icon { font-size: 40px; margin-bottom: var(--spacing-md); }
     .upload-text { font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); }
     .upload-subtext { font-size: var(--font-size-sm); color: #666; }
     .file-input { display: none; }
-
     .file-selected {
-      background: var(--color-surface);
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: var(--radius-md);
-      font-size: var(--font-size-sm);
-      margin-bottom: var(--spacing-md);
+      background: var(--color-surface); padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md); font-size: var(--font-size-sm); margin-bottom: var(--spacing-md);
     }
-
-    /* ===== Loading Spinner ===== */
     .loading-spinner {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.7s linear infinite;
     }
-    .loading-spinner.accent {
-      border: 2px solid var(--color-border);
-      border-top-color: var(--color-accent);
-    }
+    .loading-spinner.accent { border: 2px solid var(--color-border); border-top-color: var(--color-accent); }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ===== Error/Success Messages ===== */
     .error-message {
-      background: #3a1a1a;
-      border: 1px solid #6c2c2c;
-      border-radius: var(--radius-md);
-      padding: var(--spacing-sm) var(--spacing-md);
-      color: #e96c6c;
-      font-size: var(--font-size-sm);
-      margin-bottom: var(--spacing-md);
+      background: #3a1a1a; border: 1px solid #6c2c2c; border-radius: var(--radius-md);
+      padding: var(--spacing-sm) var(--spacing-md); color: #e96c6c;
+      font-size: var(--font-size-sm); margin-bottom: var(--spacing-md);
     }
-
-    /* ===== Empty State ===== */
     .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 50vh;
-      text-align: center;
-      padding: var(--spacing-lg);
-      gap: var(--spacing-md);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 50vh; text-align: center; padding: var(--spacing-lg); gap: var(--spacing-md);
     }
     .empty-state-icon { font-size: 48px; opacity: 0.5; }
     .empty-state-title { font-size: var(--font-size-lg); font-weight: 600; }
     .empty-state-message { font-size: var(--font-size-sm); color: var(--color-text-secondary); max-width: 280px; }
-
-    /* ===== Transcript Panel (Devo + Deuce — JRO-210, JRO-213) ===== */
     .transcript-panel {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--spacing-md); margin-bottom: var(--spacing-lg);
     }
     .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-md);
-      padding-bottom: var(--spacing-md);
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-md);
       border-bottom: 1px solid var(--color-border);
     }
     .panel-title { font-size: var(--font-size-lg); font-weight: 600; }
     .panel-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
-
     .panel-content {
-      font-size: var(--font-size-sm);
-      line-height: 1.7;
-      color: var(--color-text-primary);
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      max-height: 260px;
-      overflow-y: auto;
-      padding: var(--spacing-md);
-      background: rgba(0,0,0,0.2);
-      border-radius: var(--radius-sm);
-      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-sm); line-height: 1.7; color: var(--color-text-primary);
+      white-space: pre-wrap; word-wrap: break-word; max-height: 260px; overflow-y: auto;
+      padding: var(--spacing-md); background: rgba(0,0,0,0.2);
+      border-radius: var(--radius-sm); margin-bottom: var(--spacing-md);
     }
-
-    /* ===== Template Selector (Deuce — JRO-211) ===== */
     .section-label {
-      font-size: var(--font-size-sm);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-sm); font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);
     }
-
-    .template-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-    }
-    @media (min-width: 600px) {
-      .template-grid { grid-template-columns: 1fr 1fr; }
-    }
-
+    .template-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+    @media (min-width: 600px) { .template-grid { grid-template-columns: 1fr 1fr; } }
     .template-card {
-      padding: var(--spacing-md);
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-      -webkit-user-select: none;
-      min-height: 72px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: var(--spacing-md); border: 2px solid var(--color-border);
+      border-radius: var(--radius-md); background: var(--color-surface);
+      cursor: pointer; transition: all 0.2s ease; user-select: none; -webkit-user-select: none;
+      min-height: 72px; display: flex; flex-direction: column; justify-content: center;
     }
     .template-card:active, .template-card:hover { border-color: var(--color-accent); background: rgba(74,158,255,0.05); }
     .template-card.selected { border-color: var(--color-accent); background: rgba(74,158,255,0.1); }
-
     .template-card-title { font-size: var(--font-size-sm); font-weight: 600; margin-bottom: 2px; }
     .template-card-desc { font-size: 12px; color: var(--color-text-secondary); }
-
-    /* ===== Summary Panel (Deuce — JRO-211 + JRO-213) ===== */
     .summary-panel {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--spacing-md); margin-bottom: var(--spacing-lg);
     }
-
-    /* ===== Chat Interface (Deuce — JRO-212) ===== */
     .chat-container {
-      display: flex;
-      flex-direction: column;
-      height: 400px;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      overflow: hidden;
-      margin-bottom: var(--spacing-lg);
+      display: flex; flex-direction: column; height: 400px;
+      border: 1px solid var(--color-border); border-radius: var(--radius-md);
+      background: var(--color-surface); overflow: hidden; margin-bottom: var(--spacing-lg);
     }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: var(--spacing-md);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-    }
-
+    .chat-messages { flex: 1; overflow-y: auto; padding: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-sm); }
     .chat-message { display: flex; flex-direction: column; align-items: flex-start; }
     .chat-message.user { align-items: flex-end; }
-
     .chat-bubble {
-      max-width: 85%;
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: var(--radius-md);
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      font-size: var(--font-size-sm);
-      line-height: 1.5;
+      max-width: 85%; padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md); word-wrap: break-word; white-space: pre-wrap;
+      font-size: var(--font-size-sm); line-height: 1.5;
     }
-    .chat-message.assistant .chat-bubble {
-      background: var(--color-border);
-      color: var(--color-text-primary);
-      border-bottom-left-radius: 2px;
-    }
-    .chat-message.user .chat-bubble {
-      background: var(--color-accent);
-      color: #fff;
-      border-bottom-right-radius: 2px;
-    }
-
+    .chat-message.assistant .chat-bubble { background: var(--color-border); color: var(--color-text-primary); border-bottom-left-radius: 2px; }
+    .chat-message.user .chat-bubble { background: var(--color-accent); color: #fff; border-bottom-right-radius: 2px; }
     .chat-timestamp { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
-
     .chat-input-row {
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-top: 1px solid var(--color-border);
-      background: rgba(0,0,0,0.2);
-      display: flex;
-      gap: var(--spacing-sm);
-      align-items: flex-end;
+      padding: var(--spacing-sm) var(--spacing-md); border-top: 1px solid var(--color-border);
+      background: rgba(0,0,0,0.2); display: flex; gap: var(--spacing-sm); align-items: flex-end;
     }
-
     .chat-input {
-      flex: 1;
-      padding: var(--spacing-sm) var(--spacing-md);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      background: var(--color-bg);
-      color: var(--color-text-primary);
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      resize: none;
-      max-height: 80px;
+      flex: 1; padding: var(--spacing-sm) var(--spacing-md);
+      border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+      background: var(--color-bg); color: var(--color-text-primary);
+      font-family: var(--font-sans); font-size: var(--font-size-sm); resize: none; max-height: 80px;
     }
     .chat-input:focus { outline: none; border-color: var(--color-accent); }
-
-    .chat-footer-actions {
-      display: flex;
-      gap: var(--spacing-sm);
-      flex-wrap: wrap;
-      margin-top: var(--spacing-sm);
-    }
-
-    /* ===== Copy toast ===== */
+    .chat-footer-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: var(--spacing-sm); }
     .copy-wrap { position: relative; }
     .copy-toast {
-      position: absolute;
-      bottom: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--color-success);
-      color: #fff;
-      padding: 3px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      white-space: nowrap;
-      pointer-events: none;
-      animation: fadeUp 2s ease forwards;
+      position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      background: var(--color-success); color: #fff; padding: 3px 8px;
+      border-radius: var(--radius-sm); font-size: 12px; white-space: nowrap;
+      pointer-events: none; animation: fadeUp 2s ease forwards;
     }
     @keyframes fadeUp {
       0% { opacity: 0; transform: translateX(-50%) translateY(4px); }
       15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-      80% { opacity: 1; }
-      100% { opacity: 0; }
+      80% { opacity: 1; } 100% { opacity: 0; }
     }
 
-    /* ===== Responsive ===== */
+    /* ===== Progress Stepper ===== */
+    .progress-stepper {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+    .stepper-steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: var(--spacing-md); }
+    .stepper-step { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .stepper-circle {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--color-text-secondary);
+      background: var(--color-bg); transition: all 0.3s ease; margin-bottom: 6px;
+    }
+    .stepper-step.active .stepper-circle { border-color: var(--color-accent); color: var(--color-accent); background: rgba(74,158,255,0.1); }
+    .stepper-step.completed .stepper-circle { border-color: var(--color-success); background: var(--color-success); color: #fff; }
+    .stepper-label { font-size: 11px; color: var(--color-text-secondary); text-align: center; }
+    .stepper-step.active .stepper-label { color: var(--color-accent); font-weight: 600; }
+    .stepper-step.completed .stepper-label { color: var(--color-success); }
+    .stepper-connector { flex: 1; height: 2px; background: var(--color-border); max-width: 40px; margin-bottom: 22px; }
+    .stepper-connector.done { background: var(--color-success); }
+    .stepper-progress { text-align: center; }
+    .stepper-status { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--spacing-sm); }
+    .stepper-bar-wrap {
+      height: 6px; background: var(--color-border); border-radius: 3px;
+      overflow: hidden; margin: 0 auto; max-width: 280px;
+    }
+    .stepper-bar-fill { height: 100%; background: var(--color-accent); border-radius: 3px; transition: width 0.4s ease; }
+
+    /* ===== Email Modal ===== */
+    .email-modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.75); display: flex;
+      align-items: flex-end; z-index: 2000;
+    }
+    .email-modal-content {
+      background: var(--color-surface); width: 100%;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: var(--spacing-lg);
+      padding-bottom: max(var(--spacing-lg), env(safe-area-inset-bottom));
+    }
+    .recipient-list { margin: var(--spacing-md) 0; display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .recipient-item {
+      display: flex; align-items: center; gap: var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-md);
+      background: var(--color-bg); border: 1px solid var(--color-border);
+      cursor: pointer; min-height: 52px; transition: border-color 0.2s;
+    }
+    .recipient-item.selected { border-color: var(--color-accent); background: rgba(74,158,255,0.08); }
+    .recipient-checkbox {
+      width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .recipient-item.selected .recipient-checkbox { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+    .recipient-info { flex: 1; }
+    .recipient-label { font-size: var(--font-size-sm); font-weight: 600; }
+    .recipient-email { font-size: 12px; color: var(--color-text-secondary); }
+    .email-status { font-size: var(--font-size-sm); text-align: center; padding: var(--spacing-sm); margin-top: var(--spacing-sm); border-radius: var(--radius-sm); }
+    .email-sending { background: rgba(74,158,255,0.1); color: var(--color-accent); }
+    .email-sent { background: #1a3a1a; color: #6ce96c; }
+    .email-error { background: #3a1a1a; color: #e96c6c; }
+
     @media (min-width: 640px) {
-      .modal-overlay { align-items: center; }
+      .modal-overlay, .email-modal-overlay { align-items: center; }
       .modal-content { border-radius: var(--radius-lg); width: 90%; max-width: 480px; max-height: 90vh; margin: 0 auto; }
+      .email-modal-content { border-radius: var(--radius-lg); width: 90%; max-width: 440px; max-height: 90vh; margin: 0 auto; }
       .chat-container { height: 480px; }
     }
     @media (max-width: 480px) {
@@ -496,62 +309,137 @@
   <script type="text/babel">
     const { useState, useEffect, useRef, useCallback } = React;
 
-    /* ===== Templates (Deuce — JRO-211) ===== */
+    /* ===== Templates ===== */
     const TEMPLATES = [
-      {
-        id: 'meeting',
-        title: 'Meeting Notes + Action Items',
-        desc: 'Structured notes with action items',
-        prompt: `Summarize this transcript as meeting notes with:\n1. Key Discussion Points\n2. Decisions Made\n3. Action Items (with owners if mentioned)\n4. Next Steps\n\nFormat clearly with headers.`
-      },
-      {
-        id: 'coaching',
-        title: '1:1 / Coaching Session',
-        desc: 'Goals, progress, coaching insights',
-        prompt: `Summarize this 1:1 or coaching session with:\n1. Goals Discussed\n2. Progress on Previous Goals\n3. Key Insights / Coaching Points\n4. Agreements / Next Steps\n\nFocus on development and growth.`
-      },
-      {
-        id: 'discovery',
-        title: 'Product Discovery / User Interview',
-        desc: 'User needs, pain points, quotes',
-        prompt: `Summarize this user interview or discovery session with:\n1. User Background / Role\n2. Key Pain Points\n3. Needs & Desires\n4. Notable Quotes\n5. Insights for Product\n\nFormat for product team context.`
-      },
-      {
-        id: 'briefing',
-        title: 'Stakeholder Briefing',
-        desc: 'Executive summary with context',
-        prompt: `Create a stakeholder briefing from this transcript:\n1. Executive Summary (2-3 sentences)\n2. Key Findings\n3. Business Impact\n4. Recommendations\n5. Timeline / Next Steps\n\nBe concise and business-focused.`
-      },
-      {
-        id: 'general',
-        title: 'General Notes',
-        desc: 'Clean bullet-point summary',
-        prompt: `Summarize this transcript as clear, organized bullet points:\n- Main topics covered\n- Key takeaways\n- Decisions or commitments\n- Follow-up items\n\nKeep it concise and scannable.`
-      }
+      { id: 'meeting', title: 'Meeting Notes + Action Items', desc: 'Structured notes with action items',
+        prompt: `Summarize this transcript as meeting notes with:\n1. Key Discussion Points\n2. Decisions Made\n3. Action Items (with owners if mentioned)\n4. Next Steps\n\nFormat clearly with headers.` },
+      { id: 'coaching', title: '1:1 / Coaching Session', desc: 'Goals, progress, coaching insights',
+        prompt: `Summarize this 1:1 or coaching session with:\n1. Goals Discussed\n2. Progress on Previous Goals\n3. Key Insights / Coaching Points\n4. Agreements / Next Steps\n\nFocus on development and growth.` },
+      { id: 'discovery', title: 'Product Discovery / User Interview', desc: 'User needs, pain points, quotes',
+        prompt: `Summarize this user interview or discovery session with:\n1. User Background / Role\n2. Key Pain Points\n3. Needs & Desires\n4. Notable Quotes\n5. Insights for Product\n\nFormat for product team context.` },
+      { id: 'briefing', title: 'Stakeholder Briefing', desc: 'Executive summary with context',
+        prompt: `Create a stakeholder briefing from this transcript:\n1. Executive Summary (2-3 sentences)\n2. Key Findings\n3. Business Impact\n4. Recommendations\n5. Timeline / Next Steps\n\nBe concise and business-focused.` },
+      { id: 'general', title: 'General Notes', desc: 'Clean bullet-point summary',
+        prompt: `Summarize this transcript as clear, organized bullet points:\n- Main topics covered\n- Key takeaways\n- Decisions or commitments\n- Follow-up items\n\nKeep it concise and scannable.` }
     ];
 
-    /* ===== Copy + Download Utilities (Deuce — JRO-213) ===== */
-    const copyText = async (text) => {
-      try { await navigator.clipboard.writeText(text); return true; }
-      catch { return false; }
-    };
+    /* ===== Email Recipients ===== */
+    const RECIPIENTS = [
+      { id: 'work',    label: 'Work',           email: 'jromano@prismhr.com' },
+      { id: 'vp',      label: 'Vision Pros',     email: 'jrovisionpros@gmail.com' },
+      { id: 'g127',    label: 'Personal (127)',  email: 'jennromano127@gmail.com' },
+      { id: 'g612',    label: 'Personal (612)',  email: 'michelleromano612@gmail.com' },
+    ];
 
+    /* ===== Audio Chunking Constants ===== */
+    const MAX_FILE_BYTES   = 24 * 1024 * 1024;  // 24 MB Whisper limit
+    const TARGET_RATE      = 16000;              // 16 kHz — Whisper's native rate
+    const CHUNK_SECS       = 600;                // 10 min per chunk
+
+    /* ===== WAV Encoder ===== */
+    function encodeWAV(samples, sampleRate) {
+      const buf  = new ArrayBuffer(44 + samples.length * 2);
+      const view = new DataView(buf);
+      const ws = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
+      ws(0, 'RIFF'); view.setUint32(4, 36 + samples.length * 2, true);
+      ws(8, 'WAVE'); ws(12, 'fmt '); view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+      ws(36, 'data'); view.setUint32(40, samples.length * 2, true);
+      let off = 44;
+      for (let i = 0; i < samples.length; i++) {
+        const s = Math.max(-1, Math.min(1, samples[i]));
+        view.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7FFF, true); off += 2;
+      }
+      return buf;
+    }
+
+    /* ===== Decode + Downsample to mono 16kHz ===== */
+    async function decodeAndResample(file) {
+      const ab  = await file.arrayBuffer();
+      const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: TARGET_RATE });
+      try {
+        const decoded = await ctx.decodeAudioData(ab);
+        // Mix to mono
+        const ch = decoded.numberOfChannels;
+        const len = decoded.length;
+        const mono = new Float32Array(len);
+        for (let c = 0; c < ch; c++) {
+          const d = decoded.getChannelData(c);
+          for (let i = 0; i < len; i++) mono[i] += d[i] / ch;
+        }
+        return { mono, sampleRate: decoded.sampleRate };
+      } finally {
+        ctx.close();
+      }
+    }
+
+    /* ===== Transcribe a single WAV blob ===== */
+    async function transcribeBlob(blob, apiKey, idx) {
+      const f = new File([blob], `chunk-${idx}.wav`, { type: 'audio/wav' });
+      const form = new FormData();
+      form.append('file', f); form.append('model', 'whisper-1');
+      const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+        method: 'POST', headers: { Authorization: `Bearer ${apiKey}` }, body: form
+      });
+      if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message || `API ${res.status}`); }
+      return (await res.json()).text;
+    }
+
+    /* ===== Main transcription logic ===== */
+    async function runTranscription(file, apiKey, onStatus) {
+      // Small file — send directly
+      if (file.size <= MAX_FILE_BYTES) {
+        onStatus({ step: 1, status: 'Transcribing…', chunk: 0, total: 1 });
+        const text = await transcribeBlob(file, apiKey, 0);
+        onStatus({ step: 2, status: 'Complete', chunk: 1, total: 1 });
+        return text;
+      }
+
+      // Large file — decode, chunk, transcribe each
+      onStatus({ step: 1, status: 'Decoding audio…', chunk: 0, total: 1 });
+      const { mono, sampleRate } = await decodeAndResample(file);
+
+      // Resample if needed (simple decimation)
+      let samples = mono;
+      if (sampleRate !== TARGET_RATE) {
+        const factor = sampleRate / TARGET_RATE;
+        const out = new Float32Array(Math.ceil(mono.length / factor));
+        for (let i = 0; i < out.length; i++) out[i] = mono[Math.round(i * factor)] || 0;
+        samples = out;
+      }
+
+      const chunkLen = CHUNK_SECS * TARGET_RATE;
+      const total    = Math.ceil(samples.length / chunkLen);
+      let transcript = '';
+
+      for (let i = 0; i < total; i++) {
+        onStatus({ step: 1, status: `Transcribing part ${i + 1} of ${total}…`, chunk: i, total });
+        const slice = samples.slice(i * chunkLen, (i + 1) * chunkLen);
+        const wav   = encodeWAV(slice, TARGET_RATE);
+        const blob  = new Blob([wav], { type: 'audio/wav' });
+        const text  = await transcribeBlob(blob, apiKey, i);
+        transcript += (transcript ? ' ' : '') + text;
+      }
+
+      onStatus({ step: 2, status: 'Complete', chunk: total, total });
+      return transcript;
+    }
+
+    /* ===== Copy + Download Utilities ===== */
+    const copyText = async (text) => { try { await navigator.clipboard.writeText(text); return true; } catch { return false; } };
     const downloadTxt = (text, prefix) => {
       const date = new Date().toISOString().split('T')[0];
       const a = document.createElement('a');
       a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
       a.download = `${prefix}-${date}.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
     };
 
-    function CopyBtn({ text, prefix, label = 'Copy' }) {
+    function CopyBtn({ text, label = 'Copy' }) {
       const [copied, setCopied] = useState(false);
-      const handle = async () => {
-        const ok = await copyText(text);
-        if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
-      };
+      const handle = async () => { const ok = await copyText(text); if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); } };
       return (
         <div className="copy-wrap">
           {copied && <div className="copy-toast">Copied!</div>}
@@ -561,23 +449,134 @@
     }
 
     function DownloadBtn({ text, prefix, label = 'Download' }) {
+      return <button className="button button-secondary button-sm" onClick={() => downloadTxt(text, prefix)}>{label}</button>;
+    }
+
+    /* ===== Progress Stepper ===== */
+    function ProgressStepper({ stepState }) {
+      const { step, status, chunk, total } = stepState;
+      const labels = ['Upload', 'Transcribing', 'Done'];
       return (
-        <button className="button button-secondary button-sm" onClick={() => downloadTxt(text, prefix)}>
-          {label}
-        </button>
+        <div className="progress-stepper">
+          <div className="stepper-steps">
+            {labels.map((label, i) => (
+              <React.Fragment key={i}>
+                <div className={`stepper-step ${step > i ? 'completed' : step === i ? 'active' : ''}`}>
+                  <div className="stepper-circle">{step > i ? '✓' : i + 1}</div>
+                  <div className="stepper-label">{label}</div>
+                </div>
+                {i < labels.length - 1 && (
+                  <div className={`stepper-connector ${step > i ? 'done' : ''}`} />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="stepper-progress">
+            <div className="stepper-status">
+              {step === 1 && <><span className="loading-spinner accent" style={{marginRight:6}} />{status}</>}
+              {step === 2 && '✓ Transcription complete!'}
+            </div>
+            {step === 1 && total > 1 && (
+              <div className="stepper-bar-wrap" style={{marginTop:8}}>
+                <div className="stepper-bar-fill" style={{ width: `${Math.round((chunk / total) * 100)}%` }} />
+              </div>
+            )}
+          </div>
+        </div>
       );
     }
 
-    /* ===== Settings Panel (Devo — JRO-209) ===== */
+    /* ===== Email Modal ===== */
+    function EmailModal({ isOpen, onClose, content, label }) {
+      const [selected, setSelected] = useState(new Set());
+      const [emailStatus, setEmailStatus] = useState(null); // null | 'sending' | 'sent' | {error}
+
+      const toggle = (id) => setSelected(prev => {
+        const s = new Set(prev);
+        s.has(id) ? s.delete(id) : s.add(id);
+        return s;
+      });
+
+      const send = async () => {
+        if (selected.size === 0) return;
+        setEmailStatus('sending');
+        const to = RECIPIENTS.filter(r => selected.has(r.id)).map(r => r.email);
+        const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        try {
+          const fromEmail = localStorage.getItem('RESEND_FROM_EMAIL') || '';
+          const res = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              to,
+              subject: `MEmory ${label} — ${date}`,
+              body: content,
+              from: fromEmail ? `MEmory <${fromEmail}>` : 'MEmory <onboarding@resend.dev>'
+            })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to send');
+          setEmailStatus('sent');
+          setTimeout(() => { setEmailStatus(null); onClose(); }, 1800);
+        } catch (e) {
+          setEmailStatus(e.message);
+        }
+      };
+
+      if (!isOpen) return null;
+      return (
+        <div className="email-modal-overlay" onClick={onClose}>
+          <div className="email-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2 className="modal-title">📧 Send {label}</h2>
+              <button className="modal-close" onClick={onClose}>✕</button>
+            </div>
+            <div style={{fontSize:'var(--font-size-sm)',color:'var(--color-text-secondary)',marginBottom:'var(--spacing-sm)'}}>
+              Select recipients:
+            </div>
+            <div className="recipient-list">
+              {RECIPIENTS.map(r => (
+                <div
+                  key={r.id}
+                  className={`recipient-item ${selected.has(r.id) ? 'selected' : ''}`}
+                  onClick={() => toggle(r.id)}
+                >
+                  <div className="recipient-checkbox">{selected.has(r.id) ? '✓' : ''}</div>
+                  <div className="recipient-info">
+                    <div className="recipient-label">{r.label}</div>
+                    <div className="recipient-email">{r.email}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {emailStatus === 'sending' && <div className="email-status email-sending"><span className="loading-spinner accent" style={{marginRight:6}}/>Sending…</div>}
+            {emailStatus === 'sent'    && <div className="email-status email-sent">✓ Sent!</div>}
+            {emailStatus && emailStatus !== 'sending' && emailStatus !== 'sent' && (
+              <div className="email-status email-error">⚠️ {emailStatus}</div>
+            )}
+            <div className="settings-actions" style={{marginTop:'var(--spacing-md)'}}>
+              <button className="button button-secondary" onClick={onClose}>Cancel</button>
+              <button className="button button-primary" onClick={send} disabled={selected.size === 0 || emailStatus === 'sending'}>
+                Send to {selected.size > 0 ? selected.size : ''} {selected.size === 1 ? 'recipient' : selected.size > 1 ? 'recipients' : '…'}
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===== Settings Panel ===== */
     function SettingsPanel({ isOpen, onClose, onSave }) {
-      const [openAIKey, setOpenAIKey] = useState('');
+      const [openAIKey,    setOpenAIKey]    = useState('');
       const [anthropicKey, setAnthropicKey] = useState('');
+      const [resendFrom,   setResendFrom]   = useState('');
       const [saved, setSaved] = useState(false);
 
       useEffect(() => {
         if (isOpen) {
           setOpenAIKey(localStorage.getItem('OPENAI_API_KEY') || '');
           setAnthropicKey(localStorage.getItem('ANTHROPIC_API_KEY') || '');
+          setResendFrom(localStorage.getItem('RESEND_FROM_EMAIL') || '');
           setSaved(false);
         }
       }, [isOpen]);
@@ -585,22 +584,16 @@
       const handleSave = () => {
         localStorage.setItem('OPENAI_API_KEY', openAIKey.trim());
         localStorage.setItem('ANTHROPIC_API_KEY', anthropicKey.trim());
+        localStorage.setItem('RESEND_FROM_EMAIL', resendFrom.trim());
         setSaved(true);
         setTimeout(() => { onSave(); onClose(); }, 1200);
       };
 
-      const handleKeyDown = (e) => { if (e.key === 'Escape') onClose(); };
-
       return (
-        <div
-          className={`modal-overlay ${!isOpen ? 'hidden' : ''}`}
-          onClick={onClose}
-          role="dialog"
-          aria-modal="true"
-          aria-label="API Settings"
-          onKeyDown={handleKeyDown}
-        >
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className={`modal-overlay ${!isOpen ? 'hidden' : ''}`} onClick={onClose}
+          role="dialog" aria-modal="true" aria-label="API Settings"
+          onKeyDown={e => e.key === 'Escape' && onClose()}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2 className="modal-title">API Settings</h2>
               <button className="modal-close" onClick={onClose} aria-label="Close settings">✕</button>
@@ -608,99 +601,68 @@
 
             <div className="settings-group">
               <label className="settings-label" htmlFor="openai-key">OpenAI API Key</label>
-              <input
-                id="openai-key"
-                type="password"
-                className="settings-input"
-                placeholder="sk-..."
-                value={openAIKey}
-                onChange={(e) => setOpenAIKey(e.target.value)}
-                autoComplete="off"
-              />
+              <input id="openai-key" type="password" className="settings-input" placeholder="sk-..."
+                value={openAIKey} onChange={e => setOpenAIKey(e.target.value)} autoComplete="off" />
               <div className="settings-description">
-                Used for Whisper transcription. Get it at{' '}
-                <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener noreferrer">
-                  platform.openai.com
-                </a>
+                Whisper transcription — <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener">platform.openai.com</a>
               </div>
             </div>
 
             <div className="settings-group">
               <label className="settings-label" htmlFor="anthropic-key">Anthropic API Key</label>
-              <input
-                id="anthropic-key"
-                type="password"
-                className="settings-input"
-                placeholder="sk-ant-..."
-                value={anthropicKey}
-                onChange={(e) => setAnthropicKey(e.target.value)}
-                autoComplete="off"
-              />
+              <input id="anthropic-key" type="password" className="settings-input" placeholder="sk-ant-..."
+                value={anthropicKey} onChange={e => setAnthropicKey(e.target.value)} autoComplete="off" />
               <div className="settings-description">
-                Used for summarization and chat. Get it at{' '}
-                <a href="https://console.anthropic.com/account/keys" target="_blank" rel="noopener noreferrer">
-                  console.anthropic.com
-                </a>
+                Claude summaries + chat — <a href="https://console.anthropic.com/account/keys" target="_blank" rel="noopener">console.anthropic.com</a>
               </div>
             </div>
 
-            {saved && <div className="status-message status-success">Keys saved ✓</div>}
+            <div className="settings-group">
+              <label className="settings-label" htmlFor="resend-from">Email From Address</label>
+              <input id="resend-from" type="email" className="settings-input" placeholder="you@yourdomain.com"
+                value={resendFrom} onChange={e => setResendFrom(e.target.value)} autoComplete="off" />
+              <div className="settings-description">
+                Verified sender address in Resend. Requires RESEND_API_KEY set in Cloudflare Pages env vars.
+              </div>
+            </div>
 
+            {saved && <div className="status-message status-success">Settings saved ✓</div>}
             <div className="settings-actions">
               <button className="button button-secondary" onClick={onClose}>Cancel</button>
-              <button className="button button-primary" onClick={handleSave}>Save Keys</button>
+              <button className="button button-primary" onClick={handleSave}>Save</button>
             </div>
           </div>
         </div>
       );
     }
 
-    /* ===== Audio Upload + Whisper (Devo — JRO-210) ===== */
+    /* ===== Audio Upload ===== */
     function AudioUpload({ onTranscript }) {
-      const [file, setFile] = useState(null);
-      const [loading, setLoading] = useState(false);
-      const [error, setError] = useState('');
+      const [file, setFile]           = useState(null);
+      const [stepState, setStepState] = useState({ step: 0, status: '', chunk: 0, total: 1 });
+      const [loading, setLoading]     = useState(false);
+      const [error, setError]         = useState('');
       const fileRef = useRef(null);
-
       const VALID_EXTS = ['.m4a', '.mp3', '.wav'];
 
       const pick = (f) => {
         if (!f) return;
         const ext = '.' + f.name.split('.').pop().toLowerCase();
-        if (!VALID_EXTS.includes(ext)) {
-          setError('Unsupported format. Please use .m4a, .mp3, or .wav');
-          return;
-        }
-        setFile(f);
-        setError('');
+        if (!VALID_EXTS.includes(ext)) { setError('Unsupported format. Please use .m4a, .mp3, or .wav'); return; }
+        setFile(f); setError(''); setStepState({ step: 0, status: '', chunk: 0, total: 1 });
       };
 
       const transcribe = async () => {
         const apiKey = localStorage.getItem('OPENAI_API_KEY');
         if (!apiKey) { setError('Add your OpenAI API key in Settings first'); return; }
-
-        setLoading(true);
-        setError('');
+        setLoading(true); setError('');
+        setStepState({ step: 1, status: 'Starting…', chunk: 0, total: 1 });
         try {
-          const form = new FormData();
-          form.append('file', file);
-          form.append('model', 'whisper-1');
-
-          const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-            method: 'POST',
-            headers: { Authorization: `Bearer ${apiKey}` },
-            body: form
-          });
-
-          if (!res.ok) {
-            const err = await res.json();
-            throw new Error(err.error?.message || `API error ${res.status}`);
-          }
-
-          const data = await res.json();
-          onTranscript(data.text);
+          const text = await runTranscription(file, apiKey, (s) => setStepState(s));
+          onTranscript(text);
         } catch (e) {
           setError(e.message || 'Transcription failed. Check your API key and try again.');
+          setStepState({ step: 0, status: '', chunk: 0, total: 1 });
         } finally {
           setLoading(false);
         }
@@ -708,93 +670,65 @@
 
       return (
         <div>
-          <div
-            className="upload-area"
-            onClick={() => fileRef.current?.click()}
-            onDrop={(e) => { e.preventDefault(); pick(e.dataTransfer.files[0]); }}
-            onDragOver={(e) => e.preventDefault()}
-            role="button"
-            aria-label="Upload audio file"
-          >
-            <div className="upload-icon">🎙️</div>
-            <div className="upload-text">{file ? 'Tap to change file' : 'Tap to upload audio'}</div>
-            <div className="upload-subtext">.m4a, .mp3, .wav</div>
-            <input
-              ref={fileRef}
-              type="file"
-              className="file-input"
-              accept=".m4a,.mp3,.wav"
-              onChange={(e) => pick(e.target.files?.[0])}
-            />
-          </div>
-
-          {file && (
-            <div className="file-selected">📄 {file.name}</div>
+          {loading ? (
+            <ProgressStepper stepState={stepState} />
+          ) : (
+            <>
+              <div className="upload-area"
+                onClick={() => fileRef.current?.click()}
+                onDrop={e => { e.preventDefault(); pick(e.dataTransfer.files[0]); }}
+                onDragOver={e => e.preventDefault()}
+                role="button" aria-label="Upload audio file">
+                <div className="upload-icon">🎙️</div>
+                <div className="upload-text">{file ? 'Tap to change file' : 'Tap to upload audio'}</div>
+                <div className="upload-subtext">.m4a, .mp3, .wav</div>
+                <input ref={fileRef} type="file" className="file-input" accept=".m4a,.mp3,.wav"
+                  onChange={e => pick(e.target.files?.[0])} />
+              </div>
+              {file && <div className="file-selected">📄 {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</div>}
+            </>
           )}
 
           {error && <div className="error-message">{error}</div>}
 
-          {file && (
-            <button
-              className="button button-primary"
-              style={{ width: '100%' }}
-              onClick={transcribe}
-              disabled={loading}
-            >
-              {loading
-                ? <><span className="loading-spinner"></span>&nbsp; Transcribing...</>
-                : 'Transcribe'
-              }
+          {file && !loading && (
+            <button className="button button-primary" style={{ width: '100%' }} onClick={transcribe}>
+              Transcribe
             </button>
           )}
         </div>
       );
     }
 
-    /* ===== Template Selector (Deuce — JRO-211) ===== */
+    /* ===== Template Selector ===== */
     function TemplateSelector({ selected, onSelect, onSummarize, loading }) {
       return (
         <div style={{ marginBottom: 'var(--spacing-lg)' }}>
           <div className="section-label">Choose Summary Style</div>
           <div className="template-grid">
             {TEMPLATES.map(t => (
-              <div
-                key={t.id}
-                className={`template-card ${selected === t.id ? 'selected' : ''}`}
-                onClick={() => onSelect(t.id)}
-                role="button"
-                aria-pressed={selected === t.id}
-              >
+              <div key={t.id} className={`template-card ${selected === t.id ? 'selected' : ''}`}
+                onClick={() => onSelect(t.id)} role="button" aria-pressed={selected === t.id}>
                 <div className="template-card-title">{t.title}</div>
                 <div className="template-card-desc">{t.desc}</div>
               </div>
             ))}
           </div>
-          <button
-            className="button button-primary"
-            style={{ width: '100%' }}
-            onClick={onSummarize}
-            disabled={!selected || loading}
-          >
-            {loading
-              ? <><span className="loading-spinner"></span>&nbsp; Summarizing...</>
-              : 'Summarize'
-            }
+          <button className="button button-primary" style={{ width: '100%' }}
+            onClick={onSummarize} disabled={!selected || loading}>
+            {loading ? <><span className="loading-spinner"></span>&nbsp; Summarizing…</> : 'Summarize'}
           </button>
         </div>
       );
     }
 
-    /* ===== Chat Interface (Deuce — JRO-212) ===== */
+    /* ===== Chat Interface ===== */
     function ChatInterface({ transcript }) {
       const [messages, setMessages] = useState([]);
-      const [input, setInput] = useState('');
-      const [loading, setLoading] = useState(false);
+      const [input, setInput]       = useState('');
+      const [loading, setLoading]   = useState(false);
       const bottomRef = useRef(null);
-
-      useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, [messages]);
+      useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
       const send = async () => {
         const text = input.trim();
@@ -803,55 +737,28 @@
         const userMsg = { role: 'user', content: text, ts: new Date() };
         setMessages(prev => [...prev, userMsg]);
         setLoading(true);
-
         try {
           const apiKey = localStorage.getItem('ANTHROPIC_API_KEY');
           if (!apiKey) throw new Error('Add your Anthropic API key in Settings first');
-
           const history = messages.map(m => ({ role: m.role, content: m.content }));
           history.push({ role: 'user', content: text });
-
           const res = await fetch('https://api.anthropic.com/v1/messages', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-api-key': apiKey,
-              'anthropic-version': '2023-06-01',
-              'anthropic-dangerous-direct-browser-access': 'true'
-            },
-            body: JSON.stringify({
-              model: 'claude-sonnet-4-6',
-              max_tokens: 1024,
+            headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey,
+              'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+            body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1024,
               system: `You are a helpful assistant. The user wants to discuss the following transcript:\n\n${transcript}\n\nAnswer questions based on this transcript.`,
-              messages: history
-            })
+              messages: history })
           });
-
-          if (!res.ok) {
-            const err = await res.json();
-            throw new Error(err.error?.message || `API error ${res.status}`);
-          }
-
+          if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message || `API ${res.status}`); }
           const data = await res.json();
-          const reply = data.content?.[0]?.text || 'No response';
-          setMessages(prev => [...prev, { role: 'assistant', content: reply, ts: new Date() }]);
+          setMessages(prev => [...prev, { role: 'assistant', content: data.content?.[0]?.text || 'No response', ts: new Date() }]);
         } catch (e) {
           setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ ${e.message}`, ts: new Date() }]);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      const onKey = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
-      };
-
-      const clearChat = () => {
-        if (window.confirm('Clear chat history? Transcript stays.')) setMessages([]);
+        } finally { setLoading(false); }
       };
 
       const chatText = messages.map(m => `${m.role.toUpperCase()}: ${m.content}`).join('\n\n');
-
       return (
         <div>
           <div className="section-label" style={{ marginBottom: 'var(--spacing-md)' }}>Ask Claude</div>
@@ -865,158 +772,98 @@
               {messages.map((m, i) => (
                 <div key={i} className={`chat-message ${m.role}`}>
                   <div className="chat-bubble">{m.content}</div>
-                  <div className="chat-timestamp">
-                    {m.ts.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </div>
+                  <div className="chat-timestamp">{m.ts.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                 </div>
               ))}
               {loading && (
                 <div className="chat-message assistant">
-                  <div className="chat-bubble" style={{ color: 'var(--color-text-secondary)' }}>
-                    <span className="loading-spinner accent"></span>
-                  </div>
+                  <div className="chat-bubble" style={{ color: 'var(--color-text-secondary)' }}><span className="loading-spinner accent"></span></div>
                 </div>
               )}
               <div ref={bottomRef} />
             </div>
             <div className="chat-input-row">
-              <textarea
-                className="chat-input"
-                placeholder="Ask about the transcript..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={onKey}
-                disabled={loading}
-                rows={1}
-                aria-label="Chat input"
-              />
-              <button
-                className="button button-primary button-sm"
-                onClick={send}
-                disabled={!input.trim() || loading}
-              >
-                Send
-              </button>
+              <textarea className="chat-input" placeholder="Ask about the transcript…"
+                value={input} onChange={e => setInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+                disabled={loading} rows={1} aria-label="Chat input" />
+              <button className="button button-primary button-sm" onClick={send} disabled={!input.trim() || loading}>Send</button>
             </div>
           </div>
           {messages.length > 0 && (
             <div className="chat-footer-actions">
               <CopyBtn text={chatText} label="Copy Chat" />
               <DownloadBtn text={chatText} prefix="chat" label="Download Chat" />
-              <button className="button button-secondary button-sm" onClick={clearChat}>Clear</button>
+              <button className="button button-secondary button-sm" onClick={() => { if (window.confirm('Clear chat? Transcript stays.')) setMessages([]); }}>Clear</button>
             </div>
           )}
         </div>
       );
     }
 
-    /* ===== Main App (orchestrates full flow) ===== */
+    /* ===== Main App ===== */
     function MEmory() {
-      const [settingsOpen, setSettingsOpen] = useState(false);
-      const [hasKeys, setHasKeys] = useState(false);
-      const [transcript, setTranscript] = useState('');
+      const [settingsOpen,     setSettingsOpen]     = useState(false);
+      const [hasKeys,          setHasKeys]          = useState(false);
+      const [transcript,       setTranscript]       = useState('');
       const [selectedTemplate, setSelectedTemplate] = useState(null);
-      const [summary, setSummary] = useState('');
-      const [summaryLoading, setSummaryLoading] = useState(false);
+      const [summary,          setSummary]          = useState('');
+      const [summaryLoading,   setSummaryLoading]   = useState(false);
+      const [emailModal,       setEmailModal]       = useState({ open: false, content: '', label: '' });
 
-      const checkKeys = useCallback(() => {
-        setHasKeys(!!localStorage.getItem('OPENAI_API_KEY'));
-      }, []);
+      const checkKeys = useCallback(() => { setHasKeys(!!localStorage.getItem('OPENAI_API_KEY')); }, []);
+      useEffect(() => { checkKeys(); window.addEventListener('storage', checkKeys); return () => window.removeEventListener('storage', checkKeys); }, [checkKeys]);
 
-      useEffect(() => {
-        checkKeys();
-        window.addEventListener('storage', checkKeys);
-        return () => window.removeEventListener('storage', checkKeys);
-      }, [checkKeys]);
-
-      const handleTranscript = (text) => {
-        setTranscript(text);
-        setSummary('');
-        setSelectedTemplate(null);
-      };
+      const handleTranscript = (text) => { setTranscript(text); setSummary(''); setSelectedTemplate(null); };
 
       const handleSummarize = async () => {
         const apiKey = localStorage.getItem('ANTHROPIC_API_KEY');
         if (!apiKey) { alert('Add your Anthropic API key in Settings first'); return; }
-
         const tpl = TEMPLATES.find(t => t.id === selectedTemplate);
         if (!tpl) return;
-
-        setSummaryLoading(true);
-        setSummary('');
+        setSummaryLoading(true); setSummary('');
         try {
           const res = await fetch('https://api.anthropic.com/v1/messages', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-api-key': apiKey,
-              'anthropic-version': '2023-06-01',
-              'anthropic-dangerous-direct-browser-access': 'true'
-            },
-            body: JSON.stringify({
-              model: 'claude-sonnet-4-6',
-              max_tokens: 2048,
-              messages: [{
-                role: 'user',
-                content: `${tpl.prompt}\n\nTranscript:\n${transcript}`
-              }]
-            })
+            headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey,
+              'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+            body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 2048,
+              messages: [{ role: 'user', content: `${tpl.prompt}\n\nTranscript:\n${transcript}` }] })
           });
-
-          if (!res.ok) {
-            const err = await res.json();
-            throw new Error(err.error?.message || `API error ${res.status}`);
-          }
-
+          if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message || `API ${res.status}`); }
           const data = await res.json();
           setSummary(data.content?.[0]?.text || '');
-        } catch (e) {
-          setSummary(`⚠️ ${e.message}`);
-        } finally {
-          setSummaryLoading(false);
-        }
+        } catch (e) { setSummary(`⚠️ ${e.message}`); }
+        finally { setSummaryLoading(false); }
       };
+
+      const openEmail = (content, label) => setEmailModal({ open: true, content, label });
 
       return (
         <div className="app-container">
           <div className="app-header">
             <h1 className="app-title">MEmory</h1>
-            <button
-              className="settings-button"
-              onClick={() => setSettingsOpen(true)}
-              aria-label="Open settings"
-            >
-              ⚙️
-            </button>
+            <button className="settings-button" onClick={() => setSettingsOpen(true)} aria-label="Open settings">⚙️</button>
           </div>
 
           <div className="app-content">
             {!hasKeys ? (
-              /* Empty state — no keys configured */
               <div className="empty-state">
                 <div className="empty-state-icon">🔑</div>
                 <div className="empty-state-title">Configure API Keys</div>
-                <div className="empty-state-message">
-                  MEmory needs OpenAI (Whisper) and Anthropic (Claude) API keys to get started.
-                </div>
-                <button className="button button-primary" style={{ marginTop: 8 }} onClick={() => setSettingsOpen(true)}>
-                  Open Settings
-                </button>
+                <div className="empty-state-message">MEmory needs OpenAI (Whisper) and Anthropic (Claude) API keys to get started.</div>
+                <button className="button button-primary" style={{ marginTop: 8 }} onClick={() => setSettingsOpen(true)}>Open Settings</button>
               </div>
             ) : !transcript ? (
-              /* Step 1 — Upload audio */
               <AudioUpload onTranscript={handleTranscript} />
             ) : (
-              /* Steps 2–4 — Transcript → Summarize → Chat */
               <>
-                {/* Transcript panel (JRO-210 + JRO-213) */}
+                {/* Transcript */}
                 <div className="transcript-panel">
                   <div className="panel-header">
                     <div className="panel-title">Transcript</div>
-                    <button
-                      className="button button-secondary button-sm"
-                      onClick={() => { setTranscript(''); setSummary(''); setSelectedTemplate(null); }}
-                    >
+                    <button className="button button-secondary button-sm"
+                      onClick={() => { setTranscript(''); setSummary(''); setSelectedTemplate(null); }}>
                       New File
                     </button>
                   </div>
@@ -1024,60 +871,47 @@
                   <div className="panel-actions">
                     <CopyBtn text={transcript} label="Copy" />
                     <DownloadBtn text={transcript} prefix="transcript" label="Download" />
+                    <button className="button button-secondary button-sm" onClick={() => openEmail(transcript, 'Transcript')}>📧 Email</button>
                   </div>
                 </div>
 
-                {/* Template selector (JRO-211) */}
-                <TemplateSelector
-                  selected={selectedTemplate}
-                  onSelect={setSelectedTemplate}
-                  onSummarize={handleSummarize}
-                  loading={summaryLoading}
-                />
+                {/* Template selector */}
+                <TemplateSelector selected={selectedTemplate} onSelect={setSelectedTemplate}
+                  onSummarize={handleSummarize} loading={summaryLoading} />
 
-                {/* Summary panel (JRO-211 + JRO-213) */}
+                {/* Summary */}
                 {summary && (
                   <div className="summary-panel">
                     <div className="panel-header">
-                      <div className="panel-title">
-                        Summary: {TEMPLATES.find(t => t.id === selectedTemplate)?.title}
-                      </div>
+                      <div className="panel-title">Summary: {TEMPLATES.find(t => t.id === selectedTemplate)?.title}</div>
                     </div>
                     <div className="panel-content">{summary}</div>
                     <div className="panel-actions">
                       <CopyBtn text={summary} label="Copy" />
                       <DownloadBtn text={summary} prefix="summary" label="Download" />
-                      <button
-                        className="button button-secondary button-sm"
-                        onClick={() => { setSummary(''); setSelectedTemplate(null); }}
-                      >
+                      <button className="button button-secondary button-sm" onClick={() => openEmail(summary, 'Summary')}>📧 Email</button>
+                      <button className="button button-secondary button-sm"
+                        onClick={() => { setSummary(''); setSelectedTemplate(null); }}>
                         New Summary
                       </button>
                     </div>
                   </div>
                 )}
 
-                {/* Chat interface (JRO-212) */}
                 <ChatInterface transcript={transcript} />
               </>
             )}
           </div>
 
-          <SettingsPanel
-            isOpen={settingsOpen}
-            onClose={() => setSettingsOpen(false)}
-            onSave={checkKeys}
-          />
+          <SettingsPanel isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} onSave={checkKeys} />
+          <EmailModal isOpen={emailModal.open} onClose={() => setEmailModal({ open: false, content: '', label: '' })}
+            content={emailModal.content} label={emailModal.label} />
         </div>
       );
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<MEmory />);
-
-    /* Register service worker */
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
-    }
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
   </script>
 </body>
 </html>
